@@ -1,0 +1,29 @@
+### System upgrade
+dnf upgrade
+dnf install bash-completion git gcc make perl
+
+### Install XFCE and lightdm
+dnf install @xfce-desktop-environment
+systemctl enable lightdm
+systemctl set-default graphical.target
+
+# I love dmenu and surf from suckless.org so I always install it
+dnf install dmenu surf
+reboot
+# Login via lighdm and XFCE wm
+
+### Install dockx
+mkdir ~/repo && cd $_
+git clone https://github.com/M7S/dockbarx.git
+cd dockbarx
+./setup.py install
+# install any missing dependencies
+dnf install zeitgeist python-imaging python-keybinder python-xlib gnome-python2-gconf gnome-python2-libwnck
+
+# test dockx and if runs, you can now get rid of the default XFCE Panel2 (via Panel Preference)
+
+### Set startup and keyboard shortcuts
+# Open up XFCE Startup and add dockx in your Autostart
+# Open up keyboard shortcut and add dmenu_run with your shortcut key mine is as follows
+# terminal - Ctrl+Alt_T
+# dmenu - Ctrl+Alt+D
